@@ -47,7 +47,7 @@ open class Beacon {
         self.txPower = txPower
         self.identifier = identifier
         
-        self.updateRssi(rssi)
+        _ = self.updateRssi(rssi)
     }
     
     //MARK: Delegate
@@ -104,7 +104,7 @@ open class Beacon {
 
     //MARK: Advertisement Data
     func parseAdvertisementData(_ advertisementData: [AnyHashable: Any], rssi: Double) {
-        self.updateRssi(rssi)
+        _ = self.updateRssi(rssi)
         
         if let bytes = Beacon.bytesFromAdvertisementData(advertisementData) {
             if let type = Beacon.frameTypeFromBytes(bytes) {

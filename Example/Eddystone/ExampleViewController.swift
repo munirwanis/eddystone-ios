@@ -15,8 +15,8 @@ class ExampleViewController: UIViewController {
     @IBOutlet weak var mainTableView: UITableView!
     
     //MARK: Properties
-    var urls = Eddystone.Scanner.nearbyUrls
-    var previousUrls: [Eddystone.Url] = []
+    var urls = Eddystone.Scanner.nearbyUids
+    var previousUrls: [Eddystone.Uid] = []
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ extension ExampleViewController: Eddystone.ScannerDelegate {
     
     func eddystoneNearbyDidChange() {
         self.previousUrls = self.urls
-        self.urls = Eddystone.Scanner.nearbyUrls
+        self.urls = Eddystone.Scanner.nearbyUids
         
         self.mainTableView.switchDataSourceFrom(self.previousUrls, to: self.urls, withAnimation: .top)
     }
@@ -54,7 +54,7 @@ extension ExampleViewController: UITableViewDataSource {
         
         let url = self.urls[indexPath.row]
         
-        cell.mainLabel.text = url.url.absoluteString
+        cell.mainLabel.text = url.uid
         
         if  let battery = url.battery,
             let temp = url.temperature,
